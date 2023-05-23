@@ -1,4 +1,6 @@
 import React from 'react'
+import Product from '../../components/Product'
+import { PRODUCTS } from '../../products'
 import './Shop.css'
 
 const Shop = () => {
@@ -8,7 +10,17 @@ const Shop = () => {
         <h1>Shop Page</h1>
       </div>
 
-      <div className="shop-Items"></div>
+      <div className="shop-items">
+        {
+          PRODUCTS.map(product => (
+            <Product data={product} key={product.id}
+              image={product.productImage}
+              title={product.productName}
+              price={product.price}
+            />
+          ))
+        }
+      </div>
     </div>
   )
 }
