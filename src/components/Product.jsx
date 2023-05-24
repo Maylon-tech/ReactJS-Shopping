@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../pages/shop/Shop.css'
-
+import { ShopContext } from '../context/shop-context'
 import { AiFillHeart } from 'react-icons/ai'
 import { BsCartFill } from 'react-icons/bs'
 
 const Product = ({ image, price, title }) => {
+
+    const { addToCart, cartItem } = useContext(ShopContext)
+
+    const cartItemAmount = cartItem()
+
   return (
     <div className='productCard'>
         <div className='image'>
@@ -20,8 +25,9 @@ const Product = ({ image, price, title }) => {
             <button>
                 <AiFillHeart className='icon' />
             </button>
-            <button>
+            <button onClick={() => addToCart()}> 
                 <BsCartFill className='icon' />
+                {cartItemAmount > 0 && <>({ cartItemAmount})</>}
             </button>
         </div>
     </div>

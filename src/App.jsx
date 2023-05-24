@@ -9,9 +9,11 @@ import Navbar from './components/Navbar'
 import Shop from "./pages/shop/Shop"
 import Cart from "./pages/cart/Cart"
 import Home from './pages/home/Home'
+import { ShopContextProvier } from './context/shop-context'
 
 const App = () => {
   return (
+    <ShopContextProvier>
       <Router>
         <Navbar />
           <Routes>
@@ -22,6 +24,7 @@ const App = () => {
             
           </Routes>
       </Router>
+    </ShopContextProvier>
   )
 }
 
