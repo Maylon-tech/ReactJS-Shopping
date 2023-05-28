@@ -4,32 +4,35 @@ import { ShopContext } from '../context/shop-context'
 import { AiFillHeart } from 'react-icons/ai'
 import { BsCartFill } from 'react-icons/bs'
 
-const Product = ({ image, price, title }) => {
+const Product = ({ id, image, price, title }) => {
 
-    const { addToCart, cartItem } = useContext(ShopContext)
+    const { addToCart, cartItems } = useContext(ShopContext)
 
-    const cartItemAmount = cartItem()
+    const cartItemAmount = cartItems[id]
 
   return (
     <div className='productCard'>
         <div className='image'>
             <img src={image} alt="" />
         </div>
+
         <div className="description">
             <p>
                 <strong>{title}</strong>
             </p>
             <span>${price}</span>
         </div>
+
         <div className="iconsButton">
             <button>
                 <AiFillHeart className='icon' />
             </button>
-            <button onClick={() => addToCart()}> 
+            <button onClick={() => addToCart(id)}> 
                 <BsCartFill className='icon' />
                 {cartItemAmount > 0 && <>({ cartItemAmount})</>}
             </button>
         </div>
+
     </div>
   )
 }
